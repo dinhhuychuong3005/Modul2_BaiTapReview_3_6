@@ -5,8 +5,16 @@ public class Person {
     private int age;
     private String gender;
     private String address;
-
+    private String birthday;
     public Person() {
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public Person(String name, int age, String gender, String address) {
@@ -47,4 +55,5 @@ public class Person {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

@@ -1,4 +1,5 @@
 id, name, age, gender, address, email, Gpa 
 C0321K1,chương,26,Nam,namdinh,chuong.dinh@gmail.com,2.0
-C0321K3,tuyên,26,Nam,quangninh,tuyen.nguyen@gmail.com,5.0
 C0321K2,phong,22,Nam,thanhhoa,phong.chu@gmail.com,2.0
+C0321K3,CHIÊN,24,Nam,hanoi,chien.le@gmail.com,7.0
+C0321G3,TU,19,Nam,hanoi,tu.vuong@gmail.com,4.0
