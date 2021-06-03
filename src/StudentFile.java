@@ -6,7 +6,7 @@ public class StudentFile {
     void writeFile(String path, List<Student> studentList) throws IOException {
         FileWriter fr = new FileWriter(path);
         BufferedWriter bf = new BufferedWriter(fr);
-        String str = "id, name, age, gender, address, email, Gpa \n";
+       String str = "id, name, age, gender, address, email, Gpa \n";
         for (int i = 0; i < studentList.size(); i++) {
             str += studentList.get(i).getId() + "," + studentList.get(i).getName() + "," + studentList.get(i).getAge() + "," +
                     studentList.get(i).getGender() + "," + studentList.get(i).getAddress() + "," + studentList.get(i).getEmail() + "," +
@@ -24,7 +24,7 @@ public class StudentFile {
         String content = bw.readLine();
         while ((content = bw.readLine()) != null) {
             String[] values = content.split(",");
-            students.add(new Student(Integer.parseInt(values[0]),values[1],values[2],values[3],values[4],values[5],values[6],values[7]));
+            students.add(new Student(values[0],values[1],Integer.parseInt(values[2]),values[3],values[4],values[5],Float.parseFloat(values[6])));
         }
         return students;
     }

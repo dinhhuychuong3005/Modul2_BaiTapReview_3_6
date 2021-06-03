@@ -5,7 +5,6 @@ public class Student extends Person implements Serializable {
     private String id;
     private String email;
     private float gpa;
-    public Student(int i, String value, String s, String value1, String s1, String value2, String s2, String value3){}
 
 
     public Student(String id,String name, int age, String gender, String address,  String email, float gpa) {
@@ -14,6 +13,8 @@ public class Student extends Person implements Serializable {
         this.email = email;
         this.gpa = gpa;
     }
+
+
 
     public String getId() {
         return id;
@@ -46,9 +47,9 @@ public class Student extends Person implements Serializable {
                 " ,name=" + getName() +
                 " ,age=" + getAge() +
                 " ,gender=" + getGender() +
-                ", address=" + getAddress() +
-                ", email='" + email + '\'' +
-                ", gpa=" + gpa +
+                " ,address=" + getAddress() +
+                " ,email='" + email + '\'' +
+                " ,gpa=" + gpa +
                 '}';
     }
 }

@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ManageStudent {
     private static final Scanner scanner = new Scanner(System.in);
@@ -13,10 +10,11 @@ public class ManageStudent {
     public ManageStudent() {
         try {
             this.students = studentFile.readFile("abc.csv");
-        } catch (IOException e) {
+        } catch (Exception e) {
             this.students = new ArrayList<>();
         }
     }
+
 
     public List<Student> getStudents() {
         return students;
@@ -26,7 +24,7 @@ public class ManageStudent {
         this.students = students;
     }
 
-    public void add() {
+    public Student input() {
         String id = inputId();
         String name = inputName();
         int age = inputBirthday();
@@ -34,7 +32,13 @@ public class ManageStudent {
         String address = inputAddress();
         String email = inputEmail();
         float gpa = inputGpa();
-        students.add(new Student(id, name, age, gender, address, email, gpa));
+        Student student = new Student(id, name, age, gender, address, email, gpa);
+        return student;
+    }
+
+    public void add() {
+        Student student = input();
+        students.add(student);
         try {
             studentFile.writeFile("abc.csv", students);
         } catch (IOException e) {
@@ -52,8 +56,9 @@ public class ManageStudent {
 
     public String inputId() {
         String id;
+        System.out.println("Nhập vào mã sinh viên:");
         do {
-            System.out.println("Nhập vào mã sinh viên:");
+
             id = scanner.nextLine();
             if ((!validate.validateId(id)) || (checkId(id) != -1)) {
                 System.out.println("Vui lòng nhập lại mã theo định dạng ( Cxxxx[G|H|I|K]x )");
@@ -101,6 +106,7 @@ public class ManageStudent {
     }
 
     public String inputEmail() {
+        scanner.nextLine();
         String email;
         System.out.println("Nhập email");
         do {
@@ -187,10 +193,10 @@ public class ManageStudent {
                 check = true;
             }
         }
-        if (check == true){
+        if (check == true) {
             System.out.println("Thông tin sinh viên cần tìm là");
-            print(arrayList);
-        }else {
+            System.out.println(print(arrayList));
+        } else {
             System.out.println("Không có sinh viên này");
         }
     }
@@ -210,12 +216,58 @@ public class ManageStudent {
                 check = true;
             }
         }
-        if (check == true){
+        if (check == true) {
             System.out.println("Sinh viên cần tìm là");
-            print(arr);
-        }else {
+            System.out.println(print(arr));
+            ;
+        } else {
             System.out.println("Không có sinh viên trong độ tuổi này");
         }
+    }
+
+    public void searchGpa() {
+        List<Student> arr = new ArrayList<>();
+        System.out.println("Nhập vào khoảng điểm cần tìm");
+        System.out.println("Từ điểm:");
+        float minGpa = scanner.nextFloat();
+        System.out.println("Đến điểm");
+        float maxGpa = scanner.nextFloat();
+        boolean check = false;
+        for (int i = 0; i < students.size(); i++) {
+            if (minGpa <= students.get(i).getGpa() && students.get(i).getGpa() <= maxGpa) {
+                arr.add(students.get(i));
+                check = true;
+            }
+        }
+        if (check == true) {
+            System.out.println("Sinh viên cần tìm là");
+            System.out.println(print(arr));
+            ;
+        } else {
+            System.out.println("Không có sinh viên trong khoảng điểm này");
+        }
+    }
+
+    public void sortGpa() {
+        Collections.sort(students, new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                int i = (int) (o1.getGpa() - o2.getGpa());
+                if (i == 0) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+                return i;
+            }
+        });
+    }
+
+    public void sortName() {
+        Collections.sort(students, new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
     }
 }
 
