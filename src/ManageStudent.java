@@ -106,7 +106,7 @@ public class ManageStudent {
     }
 
     public String inputEmail() {
-        scanner.nextLine();
+
         String email;
         System.out.println("Nhập email");
         do {
@@ -129,6 +129,8 @@ public class ManageStudent {
                 return gpa;
             } catch (NumberFormatException ex) {
                 System.out.print("invalid! Input student age again: ");
+            }finally {
+                scanner.nextLine();
             }
         }
     }
@@ -173,6 +175,7 @@ public class ManageStudent {
             String address = inputAddress();
             String email = inputEmail();
             float gpa = inputGpa();
+            students.remove(checkId(id));
             students.add(new Student(id, name, age, gender, address, email, gpa));
             try {
                 studentFile.writeFile("abc.csv", this.students);
@@ -209,6 +212,7 @@ public class ManageStudent {
         int minAge = scanner.nextInt();
         System.out.println("Đến tuổi");
         int maxAge = scanner.nextInt();
+        scanner.nextLine();
         boolean check = false;
         for (int i = 0; i < students.size(); i++) {
             if (minAge <= students.get(i).getAge() && students.get(i).getAge() <= maxAge) {
